@@ -1,0 +1,7 @@
+{
+    "workbench.iconTheme": "vscode-icons",
+    "workbench.colorTheme": "Noctis Minimus",
+    "files.associations": {
+        "*.jsx": "javascriptreact"
+    },
+}
