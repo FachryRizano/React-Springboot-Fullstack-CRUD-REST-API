@@ -10,6 +10,7 @@ class ListEmployeeComponent extends Component {
         }
         this.addEmployee=this.addEmployee.bind(this);
         this.editEmployee = this.editEmployee.bind(this);
+        this.viewEmployee = this.viewEmployee.bind(this);
     }
 
     editEmployee(id){
@@ -18,13 +19,17 @@ class ListEmployeeComponent extends Component {
 
     componentDidMount(){
         EmployeeService.getEmployee().then(res=>{
-            this.setState({employees : res.data})
+            this.setState({
+                employees : res.data
+            })
         });
     }
 
     addEmployee(){
         this.props.history.push("/add-employee/-1")
     }
+
+
 
     deleteEmployee(id){
         EmployeeService.deleteEmployee(id).then(res=>{
@@ -34,6 +39,10 @@ class ListEmployeeComponent extends Component {
         })
     }
 
+    viewEmployee(id){
+        this.props.history.push(`/view-employee/${id}`)
+    }
+    
     render() {
         console.log(this.state.employees)
         return (
@@ -65,6 +74,7 @@ class ListEmployeeComponent extends Component {
                                         <td>
                                             <button onClick={()=>this.editEmployee(employee.id)} className="btn btn-info">Update</button>
                                             <button style={{marginLeft:"10px"}} onClick={()=>this.deleteEmployee(employee.id)} className="btn btn-danger">Delete</button>
+                                            <button style={{marginLeft:"10px"}} onClick={()=>this.viewEmployee(employee.id)} className="btn btn-success">View</button>
                                         </td>
                                     </tr>
                                 )
